@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DAL.Models.Project">
+    <Position X="1.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGAAAAEAAAAAAACAAAAAAoAAAAAAAEAAAAAEAAAAA=</HashCode>
+      <FileName>Models\Project.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Blocks" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DAL.Models.Block">
+    <Position X="4.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAIQAAgAEAAAiACACQBIAEAQAAAAAADAAQAQA=</HashCode>
+      <FileName>Models\Block.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Project" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Malgun Gothic" Size="9" />
+</ClassDiagram>

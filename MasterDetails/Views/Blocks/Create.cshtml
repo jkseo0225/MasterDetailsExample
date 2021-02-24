@@ -1,0 +1,83 @@
+﻿@model DAL.Models.Block
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Block</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BlockName" class="control-label"></label>
+                <input asp-for="BlockName" class="form-control" />
+                <span asp-validation-for="BlockName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TargetSmallGen" class="control-label"></label>
+                <input asp-for="TargetSmallGen" class="form-control" />
+                <span asp-validation-for="TargetSmallGen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TargetSmallSun" class="control-label"></label>
+                <input asp-for="TargetSmallSun" class="form-control" />
+                <span asp-validation-for="TargetSmallSun" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TargetBigGen" class="control-label"></label>
+                <input asp-for="TargetBigGen" class="form-control" />
+                <span asp-validation-for="TargetBigGen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TargetBigSun" class="control-label"></label>
+                <input asp-for="TargetBigSun" class="form-control" />
+                <span asp-validation-for="TargetBigSun" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductGenSmall" class="control-label"></label>
+                <input asp-for="ProductGenSmall" class="form-control" />
+                <span asp-validation-for="ProductGenSmall" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductGenBig" class="control-label"></label>
+                <input asp-for="ProductGenBig" class="form-control" />
+                <span asp-validation-for="ProductGenBig" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductSunSmall" class="control-label"></label>
+                <input asp-for="ProductSunSmall" class="form-control" />
+                <span asp-validation-for="ProductSunSmall" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductSunBig" class="control-label"></label>
+                <input asp-for="ProductSunBig" class="form-control" />
+                <span asp-validation-for="ProductSunBig" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TargetDate" class="control-label"></label>
+                <input asp-for="TargetDate" class="form-control" />
+                <span asp-validation-for="TargetDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label"></label>
+                <select asp-for="ProjectId" class ="form-control" asp-items="ViewBag.ProjectId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

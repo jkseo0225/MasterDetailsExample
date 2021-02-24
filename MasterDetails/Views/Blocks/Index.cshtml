@@ -1,0 +1,107 @@
+﻿@model IEnumerable<DAL.Models.Block>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BlockName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetSmallGen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetSmallSun)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetBigGen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetBigSun)
+            </th>
+
+            <th>
+                <span> 소 계</span>
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ProductGenSmall)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductGenBig)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductSunSmall)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductSunBig)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlockName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetSmallGen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetSmallSun)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetBigGen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetBigSun)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetTotalSum)
+            </td>
+                      
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductGenSmall)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductGenBig)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductSunSmall)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductSunBig)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.ProjectName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
