@@ -5,154 +5,85 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>List of Blocks in @Model.ProjectName</h1>
-
-<div>
-    <h4>Project</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProjectName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProjectName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProjectClient)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProjectClient)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProjectClass)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProjectClass)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProjectEvent)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProjectEvent)
-        </dd>
-    </dl>
-   
-
-    <p>
-        <a class="btn btn-primary" asp-controller="Blocks" asp-action="Insert" asp-route-id="@Model.Id">New Block</a>
-    </p>
-    <table class="table">
-        <thead>
+<div style="width:99%">
+    <h2>프로젝트 : @Model.ProjectName</h2>
+    <table  border="1" align="center">
+        <tr>
+            <td colspan="4" align="center" valign="middle">PROJECT(공사명) : @Html.DisplayFor(model => model.ProjectName)</td>
+            <td colspan="4" align="center" valign="middle">CLIENT(발주처) :  @Html.DisplayFor(model => model.ProjectClient)</td>
+            <td colspan="4" align="center" valign="middle">CLASS(선급) :  @Html.DisplayFor(model => model.ProjectClass)</td>
+            <td colspan="3" align="center" valign="middle">제작 착수일 : @Html.DisplayFor(model => model.StartDate)</td>
+            <td colspan="2" align="center" valign="middle">제작 마감일 : @Html.DisplayFor(model => model.EndDate)</td>
+            <td align="center" valign="middle">&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="center" valign="middle">구 분</td>
+            <td colspan="5" align="center" valign="middle">물량 정보 (PC'S)</td>
+            <td rowspan="3" align="center" valign="middle">총 잔량<br />(PC'S)</td>
+            <td rowspan="3" align="center" valign="middle">공정율<br />%</td>
+            <td colspan="4" align="center" valign="middle">일반관 생산 누계(PC'S)</td>
+            <td colspan="4" align="center" valign="middle">선급관 생산 누계(PC'S)</td>
+            <td rowspan="3" align="center" valign="middle">
+                납기예정일<br />
+                (TARGET)
+            </td>
+            <td rowspan="3" align="center" valign="middle"></td>
+        </tr>
+        <tr>
+            <td rowspan="2" align="center" valign="middle">BLOCK</td>
+            <td colspan="2" align="center" valign="middle">소 형</td>
+            <td colspan="2" align="center" valign="middle">대 형</td>
+            <td rowspan="2" align="center" valign="middle">소계</td>
+            <td rowspan="2" align="center" valign="middle">소형</td>
+            <td rowspan="2" align="center" valign="middle">대형</td>
+            <td rowspan="2" align="center" valign="middle">소계</td>
+            <td rowspan="2" align="center" valign="middle">잔량</td>
+            <td rowspan="2" align="center" valign="middle">소형</td>
+            <td rowspan="2" align="center" valign="middle">대형</td>
+            <td rowspan="2" align="center" valign="middle">소계</td>
+            <td rowspan="2" align="center" valign="middle">잔량</td>
+        </tr>
+        <tr>
+            <td align="center" valign="middle">일반관</td>
+            <td align="center" valign="middle">선급관</td>
+            <td align="center" valign="middle">일반관</td>
+            <td align="center" valign="middle">선급관</td>
+        </tr>
+        @foreach (var item in Model.Blocks)
+        {
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Blocks[0].BlockName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Blocks[0].TargetSmallGen)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Blocks[0].TargetSmallSun)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Blocks[0].TargetBigGen)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Blocks[0].TargetBigSun)
-                </th>
-
-                <th>
-                    <span> 소 계</span>
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Blocks[0].ProductGenSmall)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Blocks[0].ProductGenBig)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Blocks[0].ProductSunSmall)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Blocks[0].ProductSunBig)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Blocks[0].TargetDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Blocks[0].Project)
-                </th>
-                <th></th>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.BlockName)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.TargetSmallGen)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.TargetSmallSun)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.TargetBigGen)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.TargetBigSun)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.TargetTotalSum)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.RestedTotalSum)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.Percent)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.ProductGenSmall)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.ProductGenBig)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.ProductGenSum)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.ProductGenRested)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.ProductSunSmall)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.ProductSunBig)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.ProductSunSum)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.ProductSunRested)</td>
+                <td align="center" valign="middle">@Html.DisplayFor(modelItem => item.TargetDate)</td>
+                <td align="center">
+                    <a class="btn btn-primary btn-xs" asp-controller="Blocks" asp-action="Edit" asp-route-id="@item.Id"><span style="font-size: 75%;">수정</span></a> |
+                    <a class="btn btn-success" asp-controller="Blocks" asp-action="Details" asp-route-id="@item.Id">상세보기</a> |
+                    <a class="btn btn-danger" asp-controller="Blocks" asp-action="Delete" asp-route-id="@item.Id">삭제</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Blocks)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BlockName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TargetSmallGen)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TargetSmallSun)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TargetBigGen)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TargetBigSun)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TargetTotalSum)
-                    </td>
-
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductGenSmall)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductGenBig)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductSunSmall)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductSunBig)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TargetDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Project.ProjectName)
-                    </td>
-                    <td>
-                        <a class="btn btn-primary" asp-controller="Blocks" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a class="btn btn-success" asp-controller="Blocks" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a class="btn btn-danger" asp-controller="Blocks" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
+        }
+        <tr>
+            <td align="center" valign="middle">EVENT</td>
+            <td colspan="17" align="center" valign="middle">@Html.DisplayFor(model => model.ProjectEvent)</td>
+        </tr>
     </table>
 
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-    <a asp-action="Index">Back to List</a>
-    
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">수정</a>
+        <a asp-action="Index">뒤로가기</a>
+    </div>
 </div>
