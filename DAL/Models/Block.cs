@@ -29,10 +29,12 @@ namespace DAL.Models
 
             }
         }
-        public int Percent
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:N1}")]
+        public decimal Percent
         {
             get
-            {
+            {                
                 return (this.TargetTotalSum - this.RestedTotalSum) / this.TargetTotalSum;
             }
         }
@@ -71,6 +73,7 @@ namespace DAL.Models
             }
         }
 
+        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}")]
         public DateTime TargetDate { get; set; }
 
         [Required]

@@ -5,51 +5,154 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>List of Blocks in @Model.ProjectName</h1>
 
 <div>
     <h4>Project</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ProjectName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ProjectName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ProjectClient)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ProjectClient)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ProjectClass)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ProjectClass)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.StartDate)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.StartDate)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.EndDate)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.EndDate)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ProjectEvent)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ProjectEvent)
         </dd>
     </dl>
+   
+
+    <p>
+        <a class="btn btn-primary" asp-controller="Blocks" asp-action="Insert" asp-route-id="@Model.Id">New Block</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Blocks[0].BlockName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Blocks[0].TargetSmallGen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Blocks[0].TargetSmallSun)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Blocks[0].TargetBigGen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Blocks[0].TargetBigSun)
+                </th>
+
+                <th>
+                    <span> 소 계</span>
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Blocks[0].ProductGenSmall)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Blocks[0].ProductGenBig)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Blocks[0].ProductSunSmall)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Blocks[0].ProductSunBig)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Blocks[0].TargetDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Blocks[0].Project)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Blocks)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BlockName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TargetSmallGen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TargetSmallSun)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TargetBigGen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TargetBigSun)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TargetTotalSum)
+                    </td>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductGenSmall)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductGenBig)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductSunSmall)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductSunBig)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TargetDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Project.ProjectName)
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Blocks" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a class="btn btn-success" asp-controller="Blocks" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a class="btn btn-danger" asp-controller="Blocks" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
     <a asp-action="Index">Back to List</a>
+    
 </div>

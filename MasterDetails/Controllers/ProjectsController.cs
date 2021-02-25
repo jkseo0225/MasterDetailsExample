@@ -33,7 +33,7 @@ namespace MasterDetails.Controllers
                 return NotFound();
             }
 
-            var project = await _context.Projects
+            var project = await _context.Projects.Include(r => r.Blocks)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (project == null)
             {

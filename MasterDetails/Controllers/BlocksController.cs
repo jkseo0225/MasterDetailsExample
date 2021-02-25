@@ -45,30 +45,38 @@ namespace MasterDetails.Controllers
             return View(block);
         }
 
-        // GET: Blocks/Create
-        public IActionResult Create()
+        // GET: Blocks/Insert/id
+        // the id parameter is passing the projectId to the insert function from regions controller
+        public async Task<IActionResult> Insert(int? id)
         {
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectName");
-            return View();
+            Project project = await _context.Projects.Where(p => p.Id == id).FirstAsync();
+            if (id is not null && project.Id == id)
+            {
+                Block block = new Block();
+                block.ProjectId = (int)id;
+                //ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectName");
+                return View(block);
+            }
+            return NotFound();
         }
 
-        // POST: Blocks/Create
+        // POST: Blocks/Insert
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,BlockName,TargetSmallGen,TargetSmallSun,TargetBigGen,TargetBigSun,ProductGenSmall,ProductGenBig,ProductSunSmall,ProductSunBig,TargetDate,ProjectId")] Block block)
+        public async Task<IActionResult> Insert([Bind("Id,BlockName,TargetSmallGen,TargetSmallSun,TargetBigGen,TargetBigSun,ProductGenSmall,ProductGenBig,ProductSunSmall,ProductSunBig,TargetDate,ProjectId")] Block block)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(block);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), "Projects", new { id = block.ProjectId});
             }
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectName", block.ProjectId);
+            //ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectName", block.ProjectId);
             return View(block);
         }
-
+       
         // GET: Blocks/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -116,7 +124,8 @@ namespace MasterDetails.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), "Projects", new { id = block.ProjectId });
+                
             }
             ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectName", block.ProjectId);
             return View(block);
@@ -149,7 +158,7 @@ namespace MasterDetails.Controllers
             var block = await _context.Blocks.FindAsync(id);
             _context.Blocks.Remove(block);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Details), "Projects", new { id = block.ProjectId });            
         }
 
         private bool BlockExists(int id)
